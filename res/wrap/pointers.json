@@ -1695,6 +1695,10 @@
         "convDesc": null,
         "groupCount": "Ptr"
     },
+    "cudnnSetConvolutionGroupCount": {
+        "convDesc": null,
+        "groupCount": null
+    },
     "cublasCreate_v2": {
         "handle": "Ptr"
     },
