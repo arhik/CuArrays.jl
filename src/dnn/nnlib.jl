@@ -41,7 +41,7 @@ end
 
 # Convolution
 
-function conv!(y::CuArray{T}, x::CuArray{T}, w::CuArray{T}, cdims::DenseConvDims;
+function conv!(y::CuArray{T}, x::CuArray{T}, w::CuArray{T}, cdims::ConvDims;
                alpha=1, algo=0) where T<:CUDNNFloat
   if version() < v"6"
     all(x -> x == 1, dilation(cdims)) || error("Only dilation = 1 is supported in cuDNN version < 6")
@@ -51,7 +51,7 @@ function conv!(y::CuArray{T}, x::CuArray{T}, w::CuArray{T}, cdims::DenseConvDims
 end
 
 function ∇conv_filter!(dw::CuArray{T}, x::CuArray{T}, dy::CuArray{T},
-                       cdims::DenseConvDims; alpha=1, algo=0) where T<:CUDNNFloat
+                       cdims::ConvDims; alpha=1, algo=0) where T<:CUDNNFloat
   if version() < v"6"
     all(x -> x == 1, dilation(cdims)) || error("Only dilation = 1 is supported in cuDNN version < 6")
   end
@@ -60,7 +60,7 @@ function ∇conv_filter!(dw::CuArray{T}, x::CuArray{T}, dy::CuArray{T},
 end
 
 function ∇conv_data!(dx::CuArray{T}, dy::CuArray{T}, w::CuArray{T},
-                     cdims::DenseConvDims; alpha=1, algo=0) where T<:CUDNNFloat
+                     cdims::ConvDims; alpha=1, algo=0) where T<:CUDNNFloat
   if version() < v"6"
     all(x -> x == 1, dilation(cdims)) || error("Only dilation = 1 is supported in cuDNN version < 6")
   end
